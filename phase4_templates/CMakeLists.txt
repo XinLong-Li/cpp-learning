@@ -1,0 +1,15 @@
+# Phase 4: 模板与编译期编程
+add_executable(phase4_func_tmpl_demo 01_function_templates/demo.cpp)
+add_executable(phase4_func_tmpl_exercise 01_function_templates/exercise.cpp)
+
+add_executable(phase4_class_tmpl_demo 02_class_templates/demo.cpp)
+add_executable(phase4_class_tmpl_exercise 02_class_templates/exercise.cpp)
+
+add_executable(phase4_concepts_demo 03_concepts_cpp20/demo.cpp)
+add_executable(phase4_concepts_exercise 03_concepts_cpp20/exercise.cpp)
+
+add_executable(phase4_constexpr_demo 04_constexpr/demo.cpp)
+add_executable(phase4_constexpr_exercise 04_constexpr/exercise.cpp)
+
+add_executable(phase4_fold_demo 05_fold_expressions/demo.cpp)
+add_executable(phase4_fold_exercise 05_fold_expressions/exercise.cpp)
