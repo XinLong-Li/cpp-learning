@@ -1,0 +1,15 @@
+# Build directories
+build/
+cmake-build-*/
+out/
+
+# IDE files
+.vscode/*.db
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+*.dSYM/

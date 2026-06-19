@@ -1,0 +1,25 @@
+{
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "boundary",
+    "editor.rulers": [100],
+
+    // C/C++ 扩展配置
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.compilerPath": "/usr/bin/clang++",
+    "C_Cpp.default.intelliSenseMode": "macos-clang-arm64",
+
+    // 文件配置
+    "files.associations": {
+        "*.hpp": "cpp",
+        "*.tpp": "cpp"
+    },
+
+    // 终端配置
+    "terminal.integrated.defaultProfile.osx": "zsh",
+
+    // CMake 配置
+    "cmake.configureOnOpen": true,
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.generator": "Unix Makefiles"
+}
