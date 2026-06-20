@@ -56,7 +56,7 @@ int main() {
     std::optional<int> o1;                      // 空
     std::optional<int> o2 = 42;                 // 有值
     std::optional o3 = std::string("hello");    // C++17 CTAD
-    std::optional o4 = std::nullopt;            // 显式空
+    std::optional<int> o4 = std::nullopt;       // 显式空（须指定类型）
 
     // ═══════════════════════════════════════════════════════
     // 2. 检查值

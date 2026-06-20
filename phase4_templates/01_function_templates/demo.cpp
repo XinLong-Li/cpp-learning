@@ -49,7 +49,7 @@ int main() {
     // ═══════════════════════════════════════════════════════
     std::cout << "max(5, 3): " << max_value(5, 3) << '\n';
     std::cout << "max(3.14, 2.72): " << max_value(3.14, 2.72) << '\n';
-    std::cout << "max(\"abc\", \"xyz\"): " << max_value("abc", std::string("xyz")) << "\n\n";
+    std::cout << "max(\"abc\", \"xyz\"): " << max_value(std::string("abc"), std::string("xyz")) << "\n\n";
 
     // ═══════════════════════════════════════════════════════
     // 2. 多参数模板 + 返回类型推导

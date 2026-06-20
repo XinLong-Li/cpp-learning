@@ -26,9 +26,6 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug" OR NOT CMAKE_BUILD_TYPE)
     add_link_options(-fsanitize=address,undefined)
 endif()
 
-# ── Include ───────────────────────────────────────────────
-include_directories(${CMAKE_SOURCE_DIR}/include)
-
 # ── Phases ────────────────────────────────────────────────
 add_subdirectory(phase1_basics)
 add_subdirectory(phase2_classes_raii)

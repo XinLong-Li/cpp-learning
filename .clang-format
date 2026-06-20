@@ -1,0 +1,11 @@
+# C++ 学习项目 clang-format 配置
+# 使用: clang-format -i <file.cpp>
+# VS Code 会自动读取此文件（需安装 clang-format 扩展或 clangd）
+
+BasedOnStyle: Google
+IndentWidth: 4
+ColumnLimit: 100
+AccessModifierOffset: -4
+AllowShortFunctionsOnASingleLine: Empty
+BreakBeforeBraces: Attach
+SortIncludes: true

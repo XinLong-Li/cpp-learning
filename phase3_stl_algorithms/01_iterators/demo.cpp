@@ -8,6 +8,7 @@
 #include <set>
 #include <algorithm>
 #include <iterator>
+#include <sstream>
 
 // ── 主函数 ───────────────────────────────────────────────
 int main() {
@@ -86,10 +87,10 @@ int main() {
     // 6. 流迭代器
     // ═══════════════════════════════════════════════════════
     std::istringstream iss("100 200 300 400");
-    std::vector<int> numbers(
+    std::vector<int> numbers{
         std::istream_iterator<int>(iss),
-        std::istream_iterator<int>()
-    );
+        std::istream_iterator<int>{}
+    };
     std::cout << "From string stream: ";
     for (int n : numbers) std::cout << n << ' ';
     std::cout << '\n';
@@ -97,5 +98,3 @@ int main() {
     return 0;
 }
 
-// Needed for istringstream
-#include <sstream>

@@ -5,10 +5,18 @@ out/
 
 # IDE files
 .vscode/*.db
+.vscode/*.db-*
 .idea/
 *.swp
 *.swo
 *~
+
+# Static analysis
+.clang-tidy-cache/
+
+# clangd
+.clangd/
+compile_commands.json
 
 # macOS
 .DS_Store

@@ -1,13 +1,19 @@
 // phase5_cpp17_library/05_parallel_algorithms/demo.cpp
 // 演示：C++17 并行算法
+//
+// 注意：Apple Clang/libc++ 尚未实现 std::execution::par
+//       本文件会自动检测并用顺序算法替代
 
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <execution>
 #include <numeric>
 #include <chrono>
 #include <random>
+
+#ifdef __cpp_lib_parallel_algorithm
+#include <execution>
+#endif
 
 // ── Timer 辅助 ───────────────────────────────────────
 struct Timer {
@@ -23,7 +29,15 @@ struct Timer {
 
 // ── 主函数 ───────────────────────────────────────────────
 int main() {
-    constexpr size_t N = 10'000'000;
+#ifdef __cpp_lib_parallel_algorithm
+    constexpr bool has_parallel = true;
+#else
+    constexpr bool has_parallel = false;
+    std::cout << "⚠ 当前编译器不支持 std::execution::par（Apple Clang 已知限制）\n"
+              << "  并行算法演示将使用顺序版本替代\n\n";
+#endif
+
+    constexpr size_t N = 2'000'000;
 
     // ═══════════════════════════════════════════════════════
     // 1. 生成测试数据
@@ -38,18 +52,20 @@ int main() {
     std::cout << "Data size: " << N << " elements\n\n";
 
     // ═══════════════════════════════════════════════════════
-    // 2. sort 对比
+    // 2. sort
     // ═══════════════════════════════════════════════════════
     {
         auto v = data_seq;
         Timer t("sort (sequential)");
         std::sort(v.begin(), v.end());
     }
+#if __cpp_lib_parallel_algorithm
     {
         auto v = data_seq;
         Timer t("sort (parallel)");
         std::sort(std::execution::par, v.begin(), v.end());
     }
+#endif
     std::cout << '\n';
 
     // ═══════════════════════════════════════════════════════
@@ -59,47 +75,53 @@ int main() {
         Timer t("accumulate (sequential)");
         volatile auto sum = std::accumulate(data_seq.begin(), data_seq.end(), 0LL);
     }
+#if __cpp_lib_parallel_algorithm
     {
         Timer t("reduce (parallel)");
         volatile auto sum = std::reduce(std::execution::par,
                                         data_seq.begin(), data_seq.end(), 0LL);
     }
+#endif
     std::cout << '\n';
 
     // ═══════════════════════════════════════════════════════
-    // 4. find_if 对比
+    // 4. find_if
     // ═══════════════════════════════════════════════════════
     {
         Timer t("find_if (sequential)");
         auto it = std::find_if(data_seq.begin(), data_seq.end(),
             [](int x) { return x > 999'000; });
     }
+#if __cpp_lib_parallel_algorithm
     {
         Timer t("find_if (parallel)");
         auto it = std::find_if(std::execution::par, data_seq.begin(), data_seq.end(),
             [](int x) { return x > 999'000; });
     }
+#endif
     std::cout << '\n';
 
     // ═══════════════════════════════════════════════════════
     // 5. transform
     // ═══════════════════════════════════════════════════════
     std::vector<int> result_seq(N);
-    std::vector<int> result_par(N);
     {
         Timer t("transform (sequential)");
         std::transform(data_seq.begin(), data_seq.end(), result_seq.begin(),
             [](int x) { return x * 2 + 1; });
     }
+#if __cpp_lib_parallel_algorithm
     {
+        std::vector<int> result_par(N);
         Timer t("transform (parallel)");
         std::transform(std::execution::par,
             data_seq.begin(), data_seq.end(), result_par.begin(),
             [](int x) { return x * 2 + 1; });
     }
+#endif
 
-    std::cout << "\nNote: Parallel algorithms shine with large datasets\n";
-    std::cout << "      GCC requires linking with -ltbb for actual parallelism\n";
+    std::cout << "\nNote: 并行算法在大数据集上优势明显\n";
+    std::cout << "      GCC 需链接 -ltbb 才能真正并行\n";
 
     return 0;
 }

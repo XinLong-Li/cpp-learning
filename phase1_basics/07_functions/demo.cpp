@@ -59,7 +59,7 @@ void log_message(const std::string& msg, int severity) {
     return 42;
 }
 
-[[nodiscard("You probably want to check this result")]
+[[nodiscard("You probably want to check this result")]]
 bool try_open(const std::string& path) {
     return path == "valid.txt";
 }

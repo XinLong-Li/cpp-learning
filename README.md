@@ -12,11 +12,15 @@
 ## 快速开始
 
 ```bash
+# 构建所有学习代码（phase1-6）
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
 cmake --build build
 
 # 运行某个阶段的 demo（以阶段 1 类型推导为例）
 ./build/bin/phase1_types_demo
+
+# Phase 7 实战项目独立构建
+cd phase7_projects/01_todo_cli && cmake -S . -B build && cmake --build build
 ```
 
 ## 目录结构
@@ -34,10 +38,11 @@ cpp-learning/
 ├── phase4_templates/           # 模板与编译期编程（5 个主题）
 ├── phase5_cpp17_library/       # C++17 核心库（5 个主题）
 ├── phase6_error_handling/      # 错误处理与调试（2 个主题）
-├── phase7_projects/            # 实战项目（4 个）
-├── include/                    # 公共头文件
+├── phase7_projects/            # 实战项目（4 个，独立构建）
+├── .clang-format               # 代码格式化规则
+├── .clang-tidy                 # 静态分析规则
 ├── LEARNING_PLAN.md            # 完整学习路线图
-└── CMakeLists.txt              # 顶层构建文件
+└── CMakeLists.txt              # 顶层构建文件（phase1-6）
 ```
 
 ## 每个主题包含

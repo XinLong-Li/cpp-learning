@@ -38,10 +38,11 @@
 // ── 练习 2：识别异常安全问题 ────────────────────────
 // 下面的代码有什么异常安全问题？
 
-void unsafe_transfer(BankAccount& from, BankAccount& to, double amount) {
-    from.withdraw(amount);  // 如果这里抛异常？
-    to.deposit(amount);     // 如果这里抛异常，钱已经从 from 扣了！
-}
+// 分析这段伪代码的异常安全问题：
+// void unsafe_transfer(BankAccount& from, BankAccount& to, double amount) {
+//     from.withdraw(amount);
+//     to.deposit(amount);
+// }
 
 // TODO: 解释问题并修复（提示：先记录，再操作）
 
